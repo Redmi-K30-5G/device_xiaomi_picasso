@@ -65,6 +65,15 @@ constexpr const char *DEVICES[] = {
     "Redmi K30i 5G",
 };
 
+constexpr const char *BUILD_DESCRIPTION[] = {
+    "coral-user 11 RQ2A.210505.002 7246365 release-keys",
+};
+
+constexpr const char *BUILD_FINGERPRINT[] = {
+    "google/coral/coral:11/RQ2A.210505.002/7246365:user/"
+    "release-keys",
+};
+
 constexpr const char *CLIENT_ID[] = {
     "android-xiaomi",
 };
@@ -123,12 +132,16 @@ void load_props(const char *model, bool is_48 = false) {
   for (const auto &source : RO_PROP_SOURCES) {
     ro_prop_override(source, "device", is_48 ? PRODUCTS[1] : PRODUCTS[0], true);
     ro_prop_override(source, "model", model, true);
+    ro_prop_override(source, "fingerprint", BUILD_FINGERPRINT[0], false);
+    ro_prop_override(nullptr, "fingerprint", BUILD_FINGERPRINT[0], false);
+    ro_prop_override(nullptr, "description", BUILD_DESCRIPTION[0], false);
     if (!is_48) {
       ro_prop_override(source, "name", PRODUCTS[0], true);
     } else {
       ro_prop_override(source, "name", PRODUCTS[1], true);
     }
   }
+  ro_prop_override(nullptr, "description", BUILD_DESCRIPTION[0], false);
   ro_prop_override(nullptr, "product", model, false);
   ro_prop_override(nullptr, "com.google.clientidbase", CLIENT_ID[0], false);
   property_override("ro.oem_unlock_supported", "0");
