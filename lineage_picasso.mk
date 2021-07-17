@@ -12,11 +12,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from picasso device
 $(call inherit-product, device/xiaomi/picasso/device.mk)
 
-# Inherit some common Legion stuff.
-$(call inherit-product, vendor/legion/config/common_full_phone.mk)
+# Inherit some common Lineage stuff.
+$(call inherit-product, vendor/lineage/config/common_mobile.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := legion_picasso
+PRODUCT_NAME := lineage_picasso
 PRODUCT_DEVICE := picasso
 PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := K30 5G
@@ -31,10 +31,6 @@ TARGET_BOOT_ANIMATION_RES := 1080
 # GApps
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 TARGET_SUPPORTS_GOOGLE_RECORDER := true
-WITH_GAPPS := true
 
-# LegionOS maintainter
-LEGION_BUILD_TYPE := OFFICIAL
-LEGION_MAINTAINER := masemoel
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.maintainer.name=masemoel
